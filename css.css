@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'pixel';
-  src: url("./04B_30__.TTF") format('woff2'),
+  src: url("Crang.ttf") format('woff2'),
 }
 
 .body {
@@ -12,10 +12,12 @@
 
 * {
   font-family: "pixel";
+  font-weight: 900;
 }
 
 
-.text-linea-animation  {
+/*Text linea*/
+.text-linea-animation {
   bottom: 9.5%;
   letter-spacing: 3px;
   display: none;
@@ -23,75 +25,42 @@
 }
 
 
+.estadisticas {
+  background-color: #2c479293;
+  border: 8px solid #263b7477;
 
-
-#barra-score {
-  height: 30px;
-  position: relative;
-  border: 3px solid #262627;
-  ;
-  width: 40%;
-  background-color: rgba(255, 255, 255, 0.561);
-  overflow: hidden;
-  border-top-left-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
 }
 
-.barra-span {
-  width: 3px;
-  height: 100%;
-  top: 0%;
-  background-color: #262627;
-  ;
+
+.estadisticas-numero {
+  background-color: rgba(0, 0, 0, 0.233);
+  border: 3px solid rgba(255, 255, 255, 0.355);
 }
 
-.laterales>div {
-  height: 300px;
+.lateral-hold>div {
   width: 250px;
   border-radius: 30px;
-  border: 10px solid #263b7456;
-  border-top: 25px solid #263b7456;
-  background-color: #3b599b;
-  height: 190px;
-  overflow: hidden;
+  border: 6px solid #263b7477;
+  background-color: transparent;
+  min-height: 190px;
 }
 
-
-.laterales div h2 {
-  top: 20px;
+.lateral-hold h2 {
+  top: -17%;
 }
 
-
-
-#movimientos,
-#lineas {
-  border: 5px solid #263b74cb;
+.lateral-next>div {
+  width: 250px;
   border-radius: 30px;
-  background-color: #2357dbbd;
-  min-width: 250px;
-  min-height: 120px;
-
-
+  border: 6px solid #263b7477;
+  background-color: #ffffff00;
+  min-height: 700px;
 }
 
-#movimientos h2 {
-  font-size: 50px;
-  position: absolute;
+.lateral-next h2 {
+  top: -4%;
 }
 
-#movimientos p,
-#lineas p {
-  top: -30px;
-  font-size: 30px;
-
-  position: absolute;
-}
-
-#lineas h2 {
-  font-size: 25px;
-}
 
 .img-contenedor {
   position: absolute;
@@ -101,22 +70,13 @@
   background-image: url(wallpaperbetter.jpg);
   filter: blur(3px);
   z-index: -1;
-
 }
 
-
-.game {
-  height: 800px;
-  width: 100%;
-  cursor: pointer;
-}
 
 .play-area {
-  border: 10px solid #263b74cb;
+  border: 10px solid #263b7400;
   border-radius: 12px;
-  position: relative;
-  min-width: 400px;
-  background-color: #263b74cb;
+  background-color: #263b745b;
 }
 
 .filas {
@@ -130,19 +90,15 @@
 .bloque {
   width: 40px;
   height: 40px;
-  min-width: 40px;
-  min-height: 40px;
+  max-width: 40px;
   margin: 0px 0px;
   border-radius: 6px;
   color: white;
   border: 1px solid rgba(0, 0, 0, 0.316);
 }
 
-
-
 .bloque1 {
   background-color: #12DAE7;
-
 }
 
 .bloque2 {
@@ -194,17 +150,24 @@
   display: none;
 }
 
-/* Estilos básicos para el contenedor */
+@media (max-width : 768px) {
 
-/* Definición de la animación */
-@keyframes desvanecer {
-  0% {
-    width: 0;
-    /* Comienza en 0% de ancho */
+  .filas {
+    height: 30px;
   }
 
-  100% {
-    width: 100%;
-    /* Termina en 100px de ancho */
+  .bloque {
+    height: 30px;
+  }
+}
+
+@media (max-width : 1366px) {
+
+  .filas {
+    height: 35px;
+  }
+
+  .bloque {
+    height: 35px;
   }
 }

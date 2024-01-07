@@ -13,66 +13,75 @@
 
 <body>
 
-    <audio autoplay loop>
-        <!-- <source src="./20902.mp3" type="audio/mpeg"> -->
-    </audio>
-
     <div class="img-contenedor"></div>
 
-    <div class="d-flex justify-content-between position-absolute mt-3 w-100  align-items-center">
-        <div id="movimientos" class="p-3 m-4 d-flex justify-content-center  position-relative align-items-center">
-            <p class="text-white p-0 m-0 text-center">Bloques</p>
-            <h2 id="bloques-colocados" class="text-center text-white">0</h2>
-        </div>
-        <div id="lineas" class="p-3 m-4 d-flex justify-content-center position-relative align-items-center">
-            <p class="text-white  p-0 m-0 text-center">Meta</p>
-            <h2 class="text-center text-white">Limpiaste <span id="lineas-removidas">0</span> lineas</h2>
-        </div>
-    </div>
+    <main class="game d-flex justify-content-center border align-items-center vh-100 overflow-hidden   ">
 
-    <div class="modal fade " id="modal-pausa" aria-hidden="true" tabindex="-1">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header d-flex justify-content-center">
-                    <h5 class="modal-title fs-2">MODO PAUSA</h5>
-                </div>
+        <aside class="d-flex flex-column lateral-hold  justify-content-around  h-100 px-4">
 
-                <div class="modal-body">
-                    <h3 id="modal-score">Score : </h3>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="barra-contenedor container fluid align-items-center mt-4  d-flex justify-content-center">
-        <div id="barra-score">
-        </div>
-    </div>
-
-    <main class="game d-flex  justify-content-center  position-relative align-items-center ">
-
-        <div class="h-100 d-flex laterales justify-content-start mt-5 p-4">
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center position-relative lado  shadow">
                 <h2 class="text-white position-absolute fs-3 p-3">Sostener</h2>
-                <div id="bloque-hold"
+                <section id="bloque-hold"
                     class="container  w-100 fluid p-0 m-0 d-flex justify-content-center align-items-center flex-column">
+                </section>
+            </div>
+
+            <div
+                class="estadisticas text-white text-uppercase shadow  d-flex flex-column p-4 justify-content-between rounded-4 h-50">
+                <div id="score">
+                    <h2 class="fs-4  text-center">Score</h2>
+                    <div class="p-3 estadisticas-numero d-flex align-items-center rounded-4 justify-content-center">
+                        <p class="text-center score-numero m-0">0</p>
+                    </div>
+                </div>
+                <div id="nivel">
+                    <h2 class="fs-4  text-center">Nivel</h2>
+                    <div class="p-3 estadisticas-numero d-flex align-items-center rounded-4 justify-content-center">
+                        <p class="text-center nivel-numero m-0">1</p>
+                    </div>
+                </div>
+                <div id="lineas">
+                    <h2 class="fs-4  text-center">Lineas</h2>
+                    <div class="p-3 estadisticas-numero d-flex align-items-center rounded-4 justify-content-center">
+                        <p class="text-center linea-numero m-0">0</p>
+                    </div>
+                </div>
+            </div>
+
+        </aside> <!--Columna Izquierda-->
+
+        <span id="linea-removida-text"
+            class="position-absolute z-1 text-linea-animation text-white  animate__animated animate__fadeInUp fs-4">+200</span>
+
+        <section class="play-area shadow "> </section> <!--Tablero-->
+
+        <aside class="h-100 d-flex lateral-next justify-content-center align-items-center px-4">
+            <div class="d-flex  justify-content-center position-relative lado shadow">
+                <h2 class="text-white position-absolute fs-3 p-3">Siguiente</h2>
+                <section class="w-100  d-flex justify-content-around align-items-center flex-column" id="next-bloque">
+                </section>
+            </div>
+        </aside> <!--Columna Derecha-->
+
+
+    </main>
+
+    <section>
+        <div class="modal fade " id="modal-pausa" aria-hidden="true" tabindex="-1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header d-flex justify-content-center">
+                        <h5 class="modal-title fs-2">PAUSA</h5>
+                    </div>
+
+                    <div class="modal-body">
+                        <h3 id="modal-score">Score : </h3>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <span id="linea-removida-text" class="position-absolute z-1 text-linea-animation text-white  animate__animated animate__fadeInUp fs-4">+200</span>
-
-        <div class="play-area mt-5 position-relative"> </div>
-
-        <div class="h-100 d-flex laterales justify-content-start mt-5 p-4">
-            <div class="d-flex justify-content-center">
-                <h2 class="text-white position-absolute fs-3 p-3">Siguiente</h2>
-                <div class="container w-100 fluid p-0 m-0 d-flex justify-content-center align-items-center flex-column"
-                    id="next-bloque"></div>
-            </div>
-        </div>
-    </main>
-    <div class="rafaga"></div>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
