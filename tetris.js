@@ -42,18 +42,7 @@ class Tetris {
 
     }
 
-    visibilidadWindow() {
-        document.addEventListener("visibilitychange", (e) => {
-            if (document.visibilityState == "hidden") {
 
-                if (!this.player.pausa) {
-                    this.player.pausa = true
-                    this.pausa()
-                }
-            }
-
-        })
-    }
 
     generarBloquesRandom(contador, bloques = {}) {
 
@@ -332,7 +321,7 @@ class Tetris {
     }
 
     iniciarIntervalo() {
-        console.log(this.intervalo)
+     
         if (!this.intervalo) {
        
             this.intervalo = setInterval(() => {
@@ -344,7 +333,7 @@ class Tetris {
     }
 
     detenerIntervalo() {
-
+        console.log(this.test)
         if (this.intervalo) {
             clearInterval(this.intervalo)
             this.intervalo = null
@@ -360,7 +349,6 @@ class Tetris {
         this.generarPieza()
         htmlRender.bloquesSiguientesRender(this.pieza.siguientesFormas)
         htmlRender.tableroRender(this.tablero, this.pieza)
-        this.visibilidadWindow()
         this.iniciarIntervalo()
     }
 }

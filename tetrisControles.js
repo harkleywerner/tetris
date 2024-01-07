@@ -68,6 +68,20 @@ class Controles extends Tetris {
 
     }
 
+    visibilidadWindow() {
+        document.addEventListener("visibilitychange", (e) => {
+            if (document.visibilityState == "hidden") {
+
+                if (!this.player.pausa) {
+                    this.player.pausa = true
+                    this.pausa()
+              
+                }
+            }
+
+        })
+    }
+
     controles(tipo) {
 
         if (["s", "a", "d", "click", "e", "f", "mousemove"].includes(tipo) && this.player.pausa) return
@@ -128,6 +142,7 @@ class Controles extends Tetris {
         this.controles()
         this.constrolesTeclados()
         this.controlesMouse()
+        this.visibilidadWindow()
     }
 
 }
