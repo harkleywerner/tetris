@@ -45,6 +45,7 @@ class Tetris {
     visibilidadWindow() {
         document.addEventListener("visibilitychange", (e) => {
             if (document.visibilityState == "hidden") {
+        
                 if (!this.player.pausa) {
                     this.pausa()
                 }
@@ -133,12 +134,12 @@ class Tetris {
     }
 
     pausa() {
+
         this.player.pausa = !this.player.pausa
         htmlRender.pauseRender(this.player)
 
  
         if (this.player.pausa) {
-        
             clearInterval(this.intervalo)
         } else {
             this.intervaloDeMovimiento()
@@ -337,8 +338,8 @@ class Tetris {
     intervaloDeMovimiento() {
 
         this.intervalo = setInterval(() => {
-            // this.move({ dy: 1 })
-        }, 1000 / this.player.nivel);
+            this.move({ dy: 1 })
+        }, 500 / this.player.nivel);
 
     }
 

@@ -4,8 +4,6 @@ import propiedades from "./propiedades.js"
 const {
     BloqueIndices,
     BloqueActualIndice,
-    MAX_TABLA_X,
-    MAX_TABLA_Y
 } = propiedades
 
 
@@ -14,7 +12,7 @@ class HtmlTetrisRender {
 
     estadisticasRender(player) {
         document.querySelector(".score-numero").textContent = player.score * 100
-        document.querySelector(".nivel-numero").textContent = player.nivel
+        document.querySelector(".nivel-numero").textContent = `${player.nivel}/10`
         document.querySelector(".linea-numero").textContent = player.lineasRemovidas
     }
 
@@ -124,9 +122,9 @@ class HtmlTetrisRender {
         modalScore.textContent = `Score : ${player.score * 100}`
         const modalBoostrap = new bootstrap.Modal(modal, { backdrop: 'static' });
 
+   
         const pauseEffect = audiosTetris.pause
         pauseEffect.currentTime = 0
-
 
         if (player.pausa) {
             pauseEffect.play()

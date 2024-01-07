@@ -74,7 +74,9 @@ class Controles extends Tetris {
 
         switch (tipo) {
             case "Escape":
-                super.pausa(this.intervalo)
+                
+        console.log(this.player.pausa)
+                super.pausa()
                 break
             case "s":
                 super.move({ dy: 1 })
