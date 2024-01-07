@@ -23,7 +23,7 @@ const tableroDefault = Array.from({ length: MAX_TABLA_Y }, (_, index) => {
 class Tetris {
     constructor() {
         this.tablero = JSON.parse(JSON.stringify(tableroDefault))
-
+        this.intervalo = null
     }
 
     estadisticas() {
@@ -45,8 +45,9 @@ class Tetris {
     visibilidadWindow() {
         document.addEventListener("visibilitychange", (e) => {
             if (document.visibilityState == "hidden") {
-        
+
                 if (!this.player.pausa) {
+                    this.player.pausa = true
                     this.pausa()
                 }
             }
@@ -134,16 +135,13 @@ class Tetris {
     }
 
     pausa() {
-
-        this.player.pausa = !this.player.pausa
         htmlRender.pauseRender(this.player)
-
- 
+     
         if (this.player.pausa) {
-            clearInterval(this.intervalo)
-        } else {
-            this.intervaloDeMovimiento()
+            this.detenerIntervalo()
         }
+        else this.iniciarIntervalo()
+
     }
 
     eliminarPieza() {
@@ -163,8 +161,6 @@ class Tetris {
                 nuevoListado[key - 1] = lista[key]
             }
         }
-
-
 
         this.pieza.y = 0
         this.pieza.x = 3
@@ -335,13 +331,28 @@ class Tetris {
         }
     }
 
-    intervaloDeMovimiento() {
-
-        this.intervalo = setInterval(() => {
-            this.move({ dy: 1 })
-        }, 500 / this.player.nivel);
+    iniciarIntervalo() {
+        console.log(this.intervalo)
+        if (!this.intervalo) {
+       
+            this.intervalo = setInterval(() => {
+               
+                this.move({ dy: 1 })
+            }, 1000 / this.player.nivel);
+        }
 
     }
+
+    detenerIntervalo() {
+
+        if (this.intervalo) {
+            clearInterval(this.intervalo)
+            this.intervalo = null
+        }
+
+    }
+
+
 
 
     iniciarJuego() {
@@ -349,8 +360,8 @@ class Tetris {
         this.generarPieza()
         htmlRender.bloquesSiguientesRender(this.pieza.siguientesFormas)
         htmlRender.tableroRender(this.tablero, this.pieza)
-        this.intervaloDeMovimiento()
         this.visibilidadWindow()
+        this.iniciarIntervalo()
     }
 }
 

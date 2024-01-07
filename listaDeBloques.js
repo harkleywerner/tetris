@@ -99,7 +99,7 @@ const listadoDeBloques =
 
 const bloqueRandom = () => {
     const random = Math.floor(Math.random() * Math.abs(listadoDeBloques.length))
-    const bloque = listadoDeBloques[1]
+    const bloque = listadoDeBloques[random]
     return {
         indice: random + 1,
         forma: bloque,

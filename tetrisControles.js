@@ -74,8 +74,7 @@ class Controles extends Tetris {
 
         switch (tipo) {
             case "Escape":
-                
-        console.log(this.player.pausa)
+                this.player.pausa = false
                 super.pausa()
                 break
             case "s":
@@ -90,7 +89,6 @@ class Controles extends Tetris {
                 super.lugar({ remove: true, colisionFutura: true })
                 this.player.formaSostenida = this.pieza.rotacion
                 this.player.indexSotenido = this.pieza.indice
-                console.log(this.player.formaSostenida)
                 this.player.sostenerForma = false
                 htmlRender.bloquesSostenidosRender({ forma: this.player.formaSostenida[1], indice: this.player.indexSotenido })
                 htmlRender.bloquesSiguientesRender(this.pieza.siguientesFormas)
@@ -123,6 +121,8 @@ class Controles extends Tetris {
         }
 
     }
+
+    
 
     inciarControles() {
         this.controles()
