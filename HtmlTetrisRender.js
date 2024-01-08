@@ -12,7 +12,7 @@ class HtmlTetrisRender {
 
     estadisticasRender(player) {
         document.querySelector(".score-numero").textContent = player.score * 100
-        document.querySelector(".nivel-numero").textContent = `${player.nivel}/10`
+        document.querySelector(".nivel-numero").textContent = `${player.nivel}/25`
         document.querySelector(".linea-numero").textContent = player.lineasRemovidas
     }
 
@@ -123,11 +123,13 @@ class HtmlTetrisRender {
         const modalBoostrap = new bootstrap.Modal(modal, { backdrop: 'static' });
 
    
+      
         const pauseEffect = audiosTetris.pause
         pauseEffect.currentTime = 0
 
         if (player.pausa) {
             pauseEffect.play()
+ 
             modalBoostrap.show();
         } else {
             modal.style.display = "none"

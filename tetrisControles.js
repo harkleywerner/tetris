@@ -8,7 +8,6 @@ const {
 } = propiedades
 
 
-
 const htmlRender = new HtmlTetrisRender()
 
 class Controles extends Tetris {
@@ -27,14 +26,27 @@ class Controles extends Tetris {
         })
     }
 
-    controlesMouse() {
+
+    colocarPieza() {
 
         const playArea = document.querySelector(".play-area")
-        playArea.addEventListener("click", (e) => {
+
+
+
+
+    }
+
+    controlesMouse() {
+        this.colocarPieza()
+        const playArea = document.querySelector(".play-area")
+        document.querySelector(".game").addEventListener("click", (e) => {
+            console.log(e)
+            e.preventDefault()
+            e.stopPropagation()
             this.controles("click")
         })
-
         playArea.addEventListener("mousemove", (e) => {
+
             const rect = playArea.getBoundingClientRect();
             const cordX = Math.round(e.clientX - rect.left)
             const widthIndividual = playArea.clientWidth / MAX_TABLA_X
@@ -73,9 +85,10 @@ class Controles extends Tetris {
             if (document.visibilityState == "hidden") {
 
                 if (!this.player.pausa) {
-                    this.player.pausa = true
                     this.pausa()
-              
+
+                    clearInterval(this.test)
+                    this.test = null
                 }
             }
 
@@ -88,7 +101,6 @@ class Controles extends Tetris {
 
         switch (tipo) {
             case "Escape":
-                this.player.pausa = false
                 super.pausa()
                 break
             case "s":
@@ -136,15 +148,17 @@ class Controles extends Tetris {
 
     }
 
-    
+
 
     inciarControles() {
         this.controles()
         this.constrolesTeclados()
         this.controlesMouse()
         this.visibilidadWindow()
+
     }
 
 }
+
 
 export default Controles

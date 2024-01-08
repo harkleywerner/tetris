@@ -6,6 +6,7 @@ import propiedades from "./propiedades.js"
 const {
     MAX_TABLA_Y,
     MAX_TABLA_X,
+    SCORE_INCIAL,
     LIMITE_HOLD_POR_BLOQUE_COLOCADO,
     BloqueActualIndice,
     BloqueVacioIndice,
@@ -124,10 +125,11 @@ class Tetris {
     }
 
     pausa() {
+        this.player.pausa = !this.player.pausa
         htmlRender.pauseRender(this.player)
-     
         if (this.player.pausa) {
-            this.detenerIntervalo()
+            clearInterval(this.intervalo)
+            this.intervalo = null
         }
         else this.iniciarIntervalo()
 
@@ -276,7 +278,7 @@ class Tetris {
 
     detectarFinDeJuego() {
 
-        if (this.tablero[0].some(item => BloqueIndices.includes(item))) {
+        if (this.tablero[0].some(item => BloqueIndices.includes(item) || this.player.nivel >= 25)) {
             this.player.finalizado = true
             this.tablero = tableroDefault /*Verificar aca */
             audiosTetris.terminarJuego.play()
@@ -287,10 +289,11 @@ class Tetris {
 
     move({ dx = 0, dy = 0 } = {}) {
 
-        if (this.player.finalizado) return
+        this.verificarLevelUp()
+
+        if (this.player.finalizado || this.detectarFinDeJuego()) return
 
         const checking = this.checkeo({ dx, dy })
-
         if (checking == false) {
             const bloquesColacados = this.player.bloquesColocados
             this.lugar({ sticky: true })
@@ -302,7 +305,6 @@ class Tetris {
             this.player.bloquesColocados = bloquesColacados + 1
             if (bloquesColacados % LIMITE_HOLD_POR_BLOQUE_COLOCADO == 0) this.player.sostenerForma = true
             htmlRender.bloquesSiguientesRender(this.pieza.siguientesFormas)
-            if (this.detectarFinDeJuego()) return
             htmlRender.tableroRender(this.tablero, this.pieza)
             this.move()
             return
@@ -321,26 +323,28 @@ class Tetris {
     }
 
     iniciarIntervalo() {
-     
+
         if (!this.intervalo) {
-       
             this.intervalo = setInterval(() => {
-               
                 this.move({ dy: 1 })
             }, 1000 / this.player.nivel);
         }
-
     }
 
-    detenerIntervalo() {
-        console.log(this.test)
-        if (this.intervalo) {
+    verificarLevelUp() {
+        const score = this.player.score
+        const nivel = this.player.nivel
+        if (score >= SCORE_INCIAL && nivel < 25) {
+            this.player.nivel = nivel + 1
+            const operacion = this.player.score - SCORE_INCIAL
+            this.player.score = operacion
+            htmlRender.estadisticasRender(this.player)
+            audiosTetris.levelUp.play()
             clearInterval(this.intervalo)
             this.intervalo = null
+            this.iniciarIntervalo()
         }
-
     }
-
 
 
 

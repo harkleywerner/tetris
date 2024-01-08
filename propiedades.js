@@ -1,6 +1,6 @@
 const MAX_TABLA_X = 12
 const MAX_TABLA_Y = 20
-const SCORE_INCIAL = 15000
+const SCORE_INCIAL = 150
 const LIMITE_HOLD_POR_BLOQUE_COLOCADO = 4
 const BloqueActualIndice = 0
 const BloqueVacioIndice = -1
